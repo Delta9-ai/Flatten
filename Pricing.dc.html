@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — FLATTEN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#09090B;color:#FAFAFA;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#A78BFA}
+a:hover{color:#C4B5FD}
+::selection{background:rgba(139,92,246,0.4)}
+summary{cursor:pointer}
+@keyframes heroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+@keyframes heroIn{from{opacity:0}to{opacity:1}}
+html{scroll-behavior:auto}
+}
+</style>
+</helmet>
+<div style="padding:0 24px">
+  <nav style="max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px 0;flex-wrap:wrap;gap:12px">
+    <a href="Landing%20Beta.dc.html" style="display:flex;align-items:center;gap:10px;font:700 19px 'Space Grotesk',sans-serif;letter-spacing:-0.02em;color:#FAFAFA;text-decoration:none">
+      <svg width="38" height="22" viewBox="0 0 52 30" fill="none" aria-hidden="true" style="flex-shrink:0;display:block"><defs><linearGradient id="flatten-wave-6" x1="0" y1="0" x2="52" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient></defs><path d="M1 15 H6 Q7.5 9 9 15 Q10.75 1 12.5 15 Q14.25 29 16 15 Q17.75 1 19.5 15 Q21.25 26 23 15 Q24.5 10 26 15 H51" stroke="url(#flatten-wave-6)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
+      <span>FLATTEN</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,3vw,28px);flex-wrap:wrap">
+      <a href="Blog.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Blog</a>
+      <a href="Communaute.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Communauté</a>
+      <a href="Pricing.dc.html" style="color:#FAFAFA;text-decoration:none;font-size:14px;font-weight:600">Pricing</a>
+      <a href="Landing%20Beta.dc.html#beta" style="color:#C4B5FD;text-decoration:none;font-size:14px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Rejoindre la bêta →</a>
+    </div>
+  </nav>
+</div>
+<header data-screen-label="En-tête Pricing" style="padding:clamp(48px,8vw,88px) 24px clamp(40px,6vw,64px)">
+  <div style="max-width:760px;margin:0 auto;text-align:center">
+    <p style="margin:0;font:600 13px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#A78BFA;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) both">Pricing</p>
+    <h1 style="margin:14px 0 0;font:700 clamp(34px,5.4vw,58px)/1.04 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-transform:uppercase;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) 50ms both">Gratuit tant que<br><span style="position:relative;display:inline-block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,#7DE8E0 0%,#A8C8F0 45%,#C4B5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:blur(14px);opacity:0.8">c'est en bêta</span><span style="position:relative;background:linear-gradient(100deg,#7DE8E0 0%,#A8C8F0 45%,#C4B5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent">c'est en bêta</span></span></h1>
+    <p style="margin:16px auto 0;max-width:480px;color:#A1A1AA;font-size:16px;line-height:1.55;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) 100ms both;text-wrap:pretty">Ensuite : une licence, une fois, à toi pour toujours. Pas d'abonnement.</p>
+  </div>
+</header>
+<section data-screen-label="Offres" style="padding:0 24px clamp(56px,8vw,88px)">
+  <div style="max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;align-items:stretch">
+    <div style="position:relative;background:#131316;border:1px solid rgba(139,92,246,0.5);border-radius:18px;padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;gap:18px;box-shadow:0 0 40px rgba(139,92,246,0.14)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <p style="margin:0;font:600 16px 'Space Grotesk',sans-serif">Bêta</p>
+        <span style="font:600 11px 'Space Grotesk',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#C4B5FD;background:rgba(139,92,246,0.14);border:1px solid rgba(139,92,246,0.4);padding:4px 10px;border-radius:999px">Disponible</span>
+      </div>
+      <p style="margin:0;font:700 44px/1 'Space Grotesk',sans-serif;letter-spacing:-0.03em">0 € <span style="font:400 14px Inter,sans-serif;color:#71717A;letter-spacing:0">pendant la bêta</span></p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;flex:1">
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Application complète, sans limitation</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Toutes les mises à jour de la bêta</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Accès au Discord des bêta-testeurs</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Ton retour façonne directement l'app</span></li>
+      </ul>
+      <a href="Landing%20Beta.dc.html#beta" style="display:block;text-align:center;padding:14px 24px;border-radius:10px;background:linear-gradient(135deg,#8B5CF6,#3B82F6);color:#FFFFFF;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 8px 28px rgba(139,92,246,0.3);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)" style-active="transform:scale(0.97)">Rejoindre la bêta</a>
+      <p style="margin:0;text-align:center;font-size:12px;color:#71717A">macOS + rekordbox requis</p>
+    </div>
+    <div style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <p style="margin:0;font:600 16px 'Space Grotesk',sans-serif">Licence</p>
+        <span style="font:600 11px 'Space Grotesk',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#71717A;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:4px 10px;border-radius:999px">À la sortie</span>
+      </div>
+      <p style="margin:0;font:700 44px/1 'Space Grotesk',sans-serif;letter-spacing:-0.03em">49 € <span style="font:400 14px Inter,sans-serif;color:#71717A;letter-spacing:0">une fois, à vie</span></p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;flex:1">
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Licence à vie, 2 Macs</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Presets illimités par enceinte et par salle</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Mises à jour incluses pendant 1 an</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Remise pour les bêta-testeurs actifs</span></li>
+      </ul>
+      <span style="display:block;text-align:center;padding:14px 24px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#71717A;font-weight:600;font-size:15px">Bientôt</span>
+      <p style="margin:0;text-align:center;font-size:12px;color:#71717A">Prix indicatif, confirmé à la sortie</p>
+    </div>
+    <div style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:clamp(26px,4vw,36px);display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <p style="margin:0;font:600 16px 'Space Grotesk',sans-serif">Pro</p>
+        <span style="font:600 11px 'Space Grotesk',sans-serif;letter-spacing:0.08em;text-transform:uppercase;color:#71717A;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:4px 10px;border-radius:999px">À la sortie</span>
+      </div>
+      <p style="margin:0;font:700 44px/1 'Space Grotesk',sans-serif;letter-spacing:-0.03em">99 € <span style="font:400 14px Inter,sans-serif;color:#71717A;letter-spacing:0">une fois, à vie</span></p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;flex:1">
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Tout Licence, sur 5 Macs</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Profils multi-salles pour les collectifs</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Mises à jour majeures incluses à vie</span></li>
+        <li style="display:flex;gap:10px;color:#A1A1AA;font-size:14.5px;line-height:1.5"><span style="color:#8B5CF6;flex-shrink:0">✓</span><span>Support prioritaire</span></li>
+      </ul>
+      <span style="display:block;text-align:center;padding:14px 24px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#71717A;font-weight:600;font-size:15px">Bientôt</span>
+      <p style="margin:0;text-align:center;font-size:12px;color:#71717A">Prix indicatif, confirmé à la sortie</p>
+    </div>
+  </div>
+</section>
+<section data-screen-label="FAQ Pricing" style="padding:0 24px clamp(64px,9vw,110px)">
+  <div style="max-width:640px;margin:0 auto">
+    <h2 style="margin:0;font:700 clamp(22px,3vw,30px)/1.15 'Space Grotesk',sans-serif;letter-spacing:-0.02em">Questions fréquentes</h2>
+    <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+      <details style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px">
+        <summary style="font-weight:600;font-size:15px">C'est un abonnement ?</summary>
+        <p style="margin:12px 0 0;color:#A1A1AA;font-size:14.5px;line-height:1.6">Non. Tu paies une fois, la licence est à toi. Les mises à jour majeures sont incluses 1 an (Licence) ou à vie (Pro).</p>
+      </details>
+      <details style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px">
+        <summary style="font-weight:600;font-size:15px">La bêta est gratuite — où est le piège ?</summary>
+        <p style="margin:12px 0 0;color:#A1A1AA;font-size:14.5px;line-height:1.6">Il n'y en a pas : on a besoin de retours sur un maximum d'enceintes et de salles réelles. En échange, tu utilises l'app gratuitement pendant toute la bêta.</p>
+      </details>
+      <details style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px">
+        <summary style="font-weight:600;font-size:15px">Et si je change de Mac ?</summary>
+        <p style="margin:12px 0 0;color:#A1A1AA;font-size:14.5px;line-height:1.6">Tu désactives l'ancien, tu actives le nouveau. La licence couvre 2 machines (5 en Pro), à ton nom.</p>
+      </details>
+      <details style="background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px 20px">
+        <summary style="font-weight:600;font-size:15px">Windows ou Serato, c'est prévu ?</summary>
+        <p style="margin:12px 0 0;color:#A1A1AA;font-size:14.5px;line-height:1.6">Envisagé, pas daté. Aujourd'hui l'app fonctionne uniquement sur macOS avec rekordbox — c'est affiché partout pour éviter les mauvaises surprises.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<footer data-screen-label="Footer" style="border-top:1px solid rgba(255,255,255,0.05);padding:clamp(48px,7vw,72px) 24px 0;overflow:hidden">
+  <div style="max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:36px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;font:700 18px 'Space Grotesk',sans-serif;letter-spacing:-0.02em">
+        <svg width="38" height="22" viewBox="0 0 52 30" fill="none" aria-hidden="true" style="flex-shrink:0;display:block"><defs><linearGradient id="flatten-wave-7" x1="0" y1="0" x2="52" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient></defs><path d="M1 15 H6 Q7.5 9 9 15 Q10.75 1 12.5 15 Q14.25 29 16 15 Q17.75 1 19.5 15 Q21.25 26 23 15 Q24.5 10 26 15 H51" stroke="url(#flatten-wave-7)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
+        <span>FLATTEN</span>
+      </div>
+      <p style="margin:14px 0 0;color:#A1A1AA;font-size:13.5px;line-height:1.6;max-width:220px">Corrige le son de ta sono, directement depuis ton Mac.</p>
+      <p style="margin:10px 0 0;color:#71717A;font-size:12.5px">macOS · rekordbox</p>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Produit</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="Landing%20Beta.dc.html#demo" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Écouter la démo</a></li>
+        <li><a href="Landing%20Beta.dc.html#beta" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Rejoindre la bêta</a></li>
+        <li><a href="Pricing.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Ressources</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="Blog.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Blog</a></li>
+        <li><a href="Communaute.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Communauté</a></li>
+        <li><a href="mailto:hello@flatten.audio" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Légal</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Mentions légales</a></li>
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Confidentialité</a></li>
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">CGU</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:1040px;margin:clamp(32px,5vw,48px) auto 0;padding:18px 0;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:12.5px;color:#71717A">
+    <p style="margin:0">© 2026 FLATTEN — Créé par un DJ pour régler son propre problème de sono.</p>
+    <div style="display:flex;gap:16px">
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">Instagram</a>
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">YouTube</a>
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">Discord</a>
+    </div>
+  </div>
+  <div aria-hidden="true" style="max-width:1280px;margin:clamp(24px,4vw,44px) auto -0.14em;pointer-events:none">
+    <p style="margin:0;text-align:center;font:700 clamp(70px,16.5vw,230px)/0.85 'Space Grotesk',sans-serif;letter-spacing:-0.02em;background:linear-gradient(180deg,rgba(250,250,250,0.85),rgba(250,250,250,0.05));-webkit-background-clip:text;background-clip:text;color:transparent">FLATTEN</p>
+  </div>
+</footer>
+</x-dc>
+</body>
+</html>

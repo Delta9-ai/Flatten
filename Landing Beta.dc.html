@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLATTEN — Corrige le son de ta sono depuis ton Mac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#09090B;color:#FAFAFA;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#A78BFA}
+a:hover{color:#C4B5FD}
+::selection{background:rgba(139,92,246,0.4)}
+input::placeholder{color:#71717A}
+@keyframes heroIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes formIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:none}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes beamShift{from{background-position:0% 0;opacity:0.45}to{background-position:80% 0;opacity:1}}
+@media (prefers-reduced-motion: reduce){
+@keyframes heroIn{from{opacity:0}to{opacity:1}}
+@keyframes formIn{from{opacity:0}to{opacity:1}}
+@keyframes marquee{from{transform:none}to{transform:none}}
+@keyframes beamShift{from{opacity:0.6}to{opacity:0.9}}
+html{scroll-behavior:auto}
+}
+</style>
+</helmet>
+<header data-screen-label="Hero" style="position:relative;overflow:hidden;padding:0 24px">
+  <sc-if value="{{ showTrails }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+      <div style="position:absolute;top:-200px;right:-180px;width:720px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,0.22),rgba(59,130,246,0.08) 60%,transparent);filter:blur(48px)"></div>
+      <div style="position:absolute;top:2%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.28) 55%,rgba(196,181,253,0.5) 96%,transparent);transform:rotate(-4deg);filter:blur(1px);background-size:220% 100%;animation:beamShift 9s ease-in-out -2s infinite alternate"></div>
+      <div style="position:absolute;top:3%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(59,130,246,0.32) 50%,rgba(147,197,253,0.5) 96%,transparent);transform:rotate(-8deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 12s ease-in-out -7s infinite alternate"></div>
+      <div style="position:absolute;top:4%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.5) 52%,rgba(139,92,246,0.55) 96%,transparent);transform:rotate(-13deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 8s ease-in-out -4s infinite alternate"></div>
+      <div style="position:absolute;top:5%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 8%,rgba(59,130,246,0.45) 48%,rgba(59,130,246,0.5) 96%,transparent);transform:rotate(-18deg);background-size:220% 100%;animation:beamShift 11s ease-in-out -9s infinite alternate"></div>
+      <div style="position:absolute;top:6%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.4) 50%,rgba(196,181,253,0.55) 96%,transparent);transform:rotate(-24deg);filter:blur(0.8px);background-size:220% 100%;animation:beamShift 10s ease-in-out -1s infinite alternate"></div>
+      <div style="position:absolute;top:7%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 10%,rgba(59,130,246,0.4) 50%,rgba(147,197,253,0.5) 96%,transparent);transform:rotate(-31deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 13s ease-in-out -6s infinite alternate"></div>
+      <div style="position:absolute;top:8%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 12%,rgba(139,92,246,0.35) 55%,rgba(139,92,246,0.5) 96%,transparent);transform:rotate(-39deg);filter:blur(1.2px);background-size:220% 100%;animation:beamShift 9.5s ease-in-out -3s infinite alternate"></div>
+      <div style="position:absolute;top:9%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 15%,rgba(59,130,246,0.3) 55%,rgba(147,197,253,0.42) 96%,transparent);transform:rotate(-48deg);filter:blur(1px);background-size:220% 100%;animation:beamShift 14s ease-in-out -11s infinite alternate"></div>
+    </div>
+  </sc-if>
+  <nav style="position:relative;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,3.5vw,56px)">
+    <div style="display:flex;align-items:center;gap:12px;font:700 24px 'Space Grotesk',sans-serif;letter-spacing:-0.02em">
+      <svg width="66" height="38" viewBox="0 0 52 30" fill="none" aria-hidden="true" style="flex-shrink:0;display:block">
+        <defs>
+          <linearGradient id="flatten-wave" x1="0" y1="0" x2="52" y2="30" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#8B5CF6"></stop>
+            <stop offset="1" stop-color="#3B82F6"></stop>
+          </linearGradient>
+        </defs>
+        <path d="M1 15 H6 Q7.5 9 9 15 Q10.75 1 12.5 15 Q14.25 29 16 15 Q17.75 1 19.5 15 Q21.25 26 23 15 Q24.5 10 26 15 H51" stroke="url(#flatten-wave)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      </svg>
+      <span>FLATTEN</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:clamp(16px,3.2vw,34px);flex-wrap:wrap">
+      <a href="Blog.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:16px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Blog</a>
+      <a href="Communaute.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:16px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Communauté</a>
+      <a href="Pricing.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:16px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Pricing</a>
+      <a href="#demo" style="color:#C4B5FD;text-decoration:none;font-size:16px;font-weight:500;transition:color 160ms ease" style-hover="color:#FAFAFA">Écouter la démo →</a>
+    </div>
+  </nav>
+  <div style="position:relative;max-width:860px;margin:0 auto;text-align:center;padding:clamp(72px,12vh,140px) 0 clamp(88px,13vh,150px)">
+    <h1 style="margin:0;font:700 clamp(38px,7vw,74px)/1.04 'Space Grotesk',sans-serif;letter-spacing:-0.03em;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) both;text-wrap:pretty">Corrige le son de ta <em style="font-style:italic;color:#A78BFA">sono</em>.<br><em style="font-style:italic;color:#A78BFA">Directement</em> depuis ton Mac.</h1>
+    <p style="margin:22px auto 0;max-width:580px;font-size:clamp(16px,2.2vw,19px);line-height:1.55;color:#A1A1AA;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) 50ms both;text-wrap:pretty">L'EQ de ta table sert à mixer tes morceaux — pas à rattraper une enceinte ou une salle. FLATTEN corrige le rendu global, entre rekordbox et ta sortie audio.</p>
+    <div style="margin-top:34px;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) 100ms both">
+      <a href="#beta" style="display:inline-block;padding:16px 30px;border-radius:10px;background:linear-gradient(135deg,#8B5CF6,#3B82F6);color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;box-shadow:0 8px 32px rgba(139,92,246,0.35);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 200ms ease" style-hover="box-shadow:0 8px 42px rgba(139,92,246,0.5)" style-active="transform:scale(0.97)">Rejoindre la bêta gratuite</a>
+    </div>
+    <p style="margin:16px 0 0;font-size:13px;color:#71717A;animation:heroIn 300ms cubic-bezier(0.23,1,0.32,1) 150ms both">macOS · rekordbox — bêta gratuite</p>
+  </div>
+</header>
+<section data-screen-label="Ils nous ont fait confiance" style="padding:6px 0 clamp(44px,7vw,72px)">
+  <p style="margin:0 24px 26px;text-align:center;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#71717A">Ils nous ont fait confiance</p>
+  <div style="overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)">
+    <div style="display:flex;width:max-content;animation:marquee 32s linear infinite">
+      <div style="display:flex;align-items:center;gap:clamp(72px,10vw,128px);padding-right:clamp(72px,10vw,128px)">
+        <img src="assets/logos/pioneer.png" alt="Pioneer DJ" style="height:38px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/alphatheta.png" alt="AlphaTheta" style="height:36px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/serato.png" alt="Serato DJ" style="height:38px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/jbl.png" alt="JBL Professional" style="height:60px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/qsc.png" alt="QSC" style="height:36px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/rcf.png" alt="RCF" style="height:54px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/sennheiser-w.png" alt="Sennheiser" style="height:30px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/ni.png" alt="Native Instruments" style="height:32px;width:auto;opacity:0.55;flex-shrink:0">
+      </div>
+      <div aria-hidden="true" style="display:flex;align-items:center;gap:clamp(72px,10vw,128px);padding-right:clamp(72px,10vw,128px)">
+        <img src="assets/logos/pioneer.png" alt="Pioneer DJ" style="height:38px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/alphatheta.png" alt="AlphaTheta" style="height:36px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/serato.png" alt="Serato DJ" style="height:38px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/jbl.png" alt="JBL Professional" style="height:60px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/qsc.png" alt="QSC" style="height:36px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/rcf.png" alt="RCF" style="height:54px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/sennheiser-w.png" alt="Sennheiser" style="height:30px;width:auto;opacity:0.55;flex-shrink:0">
+        <img src="assets/logos/ni.png" alt="Native Instruments" style="height:32px;width:auto;opacity:0.55;flex-shrink:0">
+      </div>
+    </div>
+  </div>
+</section>
+<section id="demo" data-screen-label="Démo avant/après" style="padding:clamp(64px,9vw,110px) 24px;position:relative">
+  <div style="max-width:760px;margin:0 auto;text-align:center">
+    <p style="margin:0;font:600 13px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#A78BFA">La preuve</p>
+    <h2 style="margin:14px 0 0;font:700 clamp(30px,4.6vw,48px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-0.02em">Entends la différence.</h2>
+    <p style="margin:14px auto 0;max-width:480px;color:#A1A1AA;font-size:16px;line-height:1.55">Même enceinte, même morceau. Seule différence : la correction.</p>
+  </div>
+  <div style="position:relative;max-width:920px;margin:44px auto 0">
+    <div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120%;height:180%;background:radial-gradient(closest-side,rgba(139,92,246,0.3),rgba(59,130,246,0.1) 55%,transparent 78%);filter:blur(36px);opacity:{{ haloOpacity }};transition:opacity 300ms ease;pointer-events:none"></div>
+    <div style="position:relative;background:linear-gradient(180deg,#17171D 0%,#101013 100%);border:1px solid rgba(255,255,255,0.08);border-radius:22px;padding:clamp(18px,3.5vw,30px);box-shadow:0 40px 80px -40px rgba(0,0,0,0.85),inset 0 1px 0 rgba(255,255,255,0.06);overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.55) 35%,rgba(59,130,246,0.55) 65%,transparent);opacity:{{ haloOpacity }};transition:opacity 300ms ease"></div>
+      <canvas ref="{{ waveRef }}" onClick="{{ seek }}" aria-label="Position de lecture" style="width:100%;height:150px;display:block;cursor:pointer"></canvas>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px">
+        <button onClick="{{ togglePlay }}" aria-label="{{ playLabel }}" style="width:60px;height:60px;border-radius:16px;border:none;background:linear-gradient(135deg,#8B5CF6,#3B82F6);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 28px rgba(139,92,246,0.4),inset 0 1px 0 rgba(255,255,255,0.3);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 200ms ease" style-hover="transform:scale(1.04);box-shadow:0 10px 34px rgba(139,92,246,0.55),inset 0 1px 0 rgba(255,255,255,0.3)" style-active="transform:scale(0.97)" style-focus="box-shadow:0 0 0 3px rgba(139,92,246,0.45)">
+          <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="2.5" y="1.5" width="4.5" height="15" rx="1.5" fill="#FFFFFF"></rect><rect x="11" y="1.5" width="4.5" height="15" rx="1.5" fill="#FFFFFF"></rect></svg>
+          </sc-if>
+          <sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 2 L16 9 L4.5 16 Z" fill="#FFFFFF"></path></svg>
+          </sc-if>
+        </button>
+        <div style="flex:1;min-width:130px">
+          <p style="margin:0;font-weight:600;font-size:15px;color:{{ statusColor }};transition:color 200ms ease">{{ statusText }}</p>
+          <p style="margin:3px 0 0;font-size:12.5px;color:#71717A">Lance la lecture, puis bascule le toggle.</p>
+        </div>
+        <button onClick="{{ toggleCorrection }}" role="switch" aria-checked="{{ correctedAttr }}" aria-label="Activer la correction" style="position:relative;width:180px;height:60px;border-radius:16px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.08);cursor:pointer;padding:5px;flex-shrink:0;outline:none;box-shadow:inset 0 2px 6px rgba(0,0,0,0.4);transition:transform 160ms cubic-bezier(0.23,1,0.32,1),border-color 200ms ease" style-hover="border-color:rgba(139,92,246,0.35)" style-active="transform:scale(0.97)" style-focus="box-shadow:0 0 0 3px rgba(139,92,246,0.45)">
+          <div style="position:absolute;top:5px;left:5px;width:calc(50% - 5px);height:calc(100% - 10px);border-radius:12px;background:{{ knobBg }};transform:translateX({{ knobX }});transition:transform 220ms cubic-bezier(0.23,1,0.32,1),box-shadow 220ms ease,background 220ms ease;box-shadow:{{ knobShadow }}"></div>
+          <div style="position:relative;display:flex;height:100%">
+            <span style="flex:1;display:flex;align-items:center;justify-content:center;font:600 15px 'Space Grotesk',sans-serif;letter-spacing:0.06em;color:{{ offColor }};transition:color 200ms ease">OFF</span>
+            <span style="flex:1;display:flex;align-items:center;justify-content:center;font:600 15px 'Space Grotesk',sans-serif;letter-spacing:0.06em;color:{{ onColor }};transition:color 200ms ease">ON</span>
+          </div>
+        </button>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12.5px;color:#71717A;margin:14px 0 0">Casque ou bonnes enceintes recommandés — la différence se joue dans les basses et le haut du spectre.</p>
+  </div>
+</section>
+<section data-screen-label="Le problème" style="padding:clamp(64px,9vw,110px) 24px;border-top:1px solid rgba(255,255,255,0.05)">
+  <div style="max-width:1400px;margin:0 auto">
+    <h2 style="margin:0 auto;font:700 clamp(28px,4vw,42px)/1.15 'Space Grotesk',sans-serif;letter-spacing:-0.02em;max-width:620px;text-align:center;text-wrap:pretty">Sur contrôleur, tu n'as aucun moyen logiciel de corriger ta sono.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:52px">
+      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 1</p>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:150px">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round">
+            <line x1="28" y1="20" x2="28" y2="76"></line><circle cx="28" cy="58" r="6" fill="#141417"></circle>
+            <line x1="48" y1="20" x2="48" y2="76"></line><circle cx="48" cy="34" r="6" fill="#141417"></circle>
+            <line x1="68" y1="20" x2="68" y2="76"></line><circle cx="68" cy="50" r="6" fill="#141417"></circle>
+          </svg>
+        </div>
+        <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">L'EQ de ta table mixe, il ne corrige pas</h3>
+        <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">Ses trois bandes servent à enchaîner les morceaux. Si tu les détournes pour rattraper l'enceinte, tu ne peux plus mixer avec.</p>
+      </div>
+      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 2</p>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:150px">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="48" cy="48" r="26"></circle>
+            <line x1="30" y1="66" x2="66" y2="30"></line>
+          </svg>
+        </div>
+        <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">rekordbox n'a pas d'EQ master</h3>
+        <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">Réclamé depuis des années sur les forums. Toujours rien : le signal sort tel quel, sans correction possible.</p>
+      </div>
+      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 3</p>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:150px">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="48" cy="48" r="28"></circle>
+            <circle cx="48" cy="48" r="16"></circle>
+            <circle cx="48" cy="48" r="4" fill="#A78BFA"></circle>
+          </svg>
+        </div>
+        <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">Les EQ système ne captent rien</h3>
+        <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">eqMac et consorts n'y peuvent rien : les logiciels DJ contournent le circuit audio classique de macOS.</p>
+      </div>
+      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 4</p>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:150px">
+          <svg width="96" height="96" viewBox="0 0 96 96" aria-hidden="true" fill="none" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round">
+            <rect x="18" y="34" width="60" height="28" rx="6"></rect>
+            <circle cx="34" cy="48" r="5"></circle>
+            <circle cx="48" cy="48" r="5"></circle>
+            <circle cx="62" cy="48" r="5"></circle>
+            <line x1="26" y1="34" x2="26" y2="26"></line>
+            <line x1="70" y1="34" x2="70" y2="26"></line>
+          </svg>
+        </div>
+        <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">L'EQ matériel, la fausse solution</h3>
+        <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">Un boîtier à 100–300 €, à trimballer, câbler et régler à chaque date. Un maillon de plus qui peut lâcher.</p>
+      </div>
+    </div>
+    <p style="margin:32px 0 0;color:#A1A1AA;font-size:15.5px;text-wrap:pretty">Jusqu'ici, la seule solution : un égaliseur matériel à 100–300 €, à trimballer et câbler à chaque date.</p>
+  </div>
+</section>
+<section data-screen-label="Comment ça marche" style="padding:clamp(64px,9vw,110px) 24px;border-top:1px solid rgba(255,255,255,0.05)">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <h2 style="margin:0;font:700 clamp(28px,4vw,42px)/1.12 'Space Grotesk',sans-serif;letter-spacing:-0.02em">Invisible dans ta chaîne audio.</h2>
+    <div style="display:flex;align-items:stretch;gap:clamp(8px,1.5vw,14px);margin-top:40px">
+      <div data-reveal="0" style="flex:1;min-width:0;background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:clamp(16px,3vw,26px) clamp(8px,2vw,18px);display:flex;flex-direction:column;justify-content:center">
+        <p style="margin:0;font:700 clamp(15px,2.4vw,19px) 'Space Grotesk',sans-serif;letter-spacing:-0.01em">rekordbox</p>
+        <p style="margin:6px 0 0;color:#A1A1AA;font-size:clamp(11.5px,1.6vw,13.5px);line-height:1.5">Ton logiciel DJ, strictement inchangé</p>
+      </div>
+      <div aria-hidden="true" style="align-self:center;color:#8B5CF6;font-size:clamp(16px,2.5vw,22px);flex-shrink:0">→</div>
+      <div data-reveal="1" style="flex:1.15;min-width:0;background:#131316;border:1px solid rgba(139,92,246,0.45);border-radius:14px;padding:clamp(16px,3vw,26px) clamp(8px,2vw,18px);box-shadow:0 0 32px rgba(139,92,246,0.16);display:flex;flex-direction:column;justify-content:center">
+        <p style="margin:0;font:700 clamp(15px,2.4vw,19px) 'Space Grotesk',sans-serif;letter-spacing:-0.01em;color:#C4B5FD">FLATTEN</p>
+        <p style="margin:6px 0 0;color:#A1A1AA;font-size:clamp(11.5px,1.6vw,13.5px);line-height:1.5">Correction EQ multi-bandes, invisible</p>
+      </div>
+      <div aria-hidden="true" style="align-self:center;color:#3B82F6;font-size:clamp(16px,2.5vw,22px);flex-shrink:0">→</div>
+      <div data-reveal="2" style="flex:1;min-width:0;background:#131316;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:clamp(16px,3vw,26px) clamp(8px,2vw,18px);display:flex;flex-direction:column;justify-content:center">
+        <p style="margin:0;font:700 clamp(15px,2.4vw,19px) 'Space Grotesk',sans-serif;letter-spacing:-0.01em">Ta sono</p>
+        <p style="margin:6px 0 0;color:#A1A1AA;font-size:clamp(11.5px,1.6vw,13.5px);line-height:1.5">Le son corrigé pour l'enceinte et la salle</p>
+      </div>
+    </div>
+    <p style="margin:26px auto 0;color:#A1A1AA;font-size:15.5px;max-width:520px;text-wrap:pretty">Rien ne change dans ton workflow ni ton monitoring casque : tu cales tes cues exactement comme avant.</p>
+  </div>
+</section>
+<section data-screen-label="Comparaison" style="padding:clamp(56px,8vw,90px) 24px;border-top:1px solid rgba(255,255,255,0.05)">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center">
+      <p style="margin:0;font:600 13px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#A78BFA">Comparaison</p>
+      <h2 style="margin:14px 0 0;font:700 clamp(28px,4.2vw,44px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-0.02em">Ta soirée, avec et sans.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:44px">
+      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:18px;padding:6px 26px">
+        <div style="display:flex;align-items:center;gap:12px;padding:20px 0">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" fill="none" stroke="#71717A" stroke-width="2"><circle cx="14" cy="14" r="11"></circle><line x1="9.5" y1="9.5" x2="18.5" y2="18.5"></line><line x1="18.5" y1="9.5" x2="9.5" y2="18.5"></line></svg>
+          <h3 style="margin:0;font:700 19px 'Space Grotesk',sans-serif;letter-spacing:-0.01em;color:#D4D4D8">Sans FLATTEN</h3>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#26262C"></circle><line x1="6" y1="6" x2="12" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line><line x1="12" y1="6" x2="6" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line></svg><p style="margin:0;color:#A1A1AA;font-size:14.5px;line-height:1.5">Tu cales ta sono à l'oreille pendant le cocktail</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#26262C"></circle><line x1="6" y1="6" x2="12" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line><line x1="12" y1="6" x2="6" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line></svg><p style="margin:0;color:#A1A1AA;font-size:14.5px;line-height:1.5">L'EQ de ta table détourné pour rattraper la salle</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#26262C"></circle><line x1="6" y1="6" x2="12" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line><line x1="12" y1="6" x2="6" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line></svg><p style="margin:0;color:#A1A1AA;font-size:14.5px;line-height:1.5">Un rack d'EQ matériel à trimballer et câbler</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#26262C"></circle><line x1="6" y1="6" x2="12" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line><line x1="12" y1="6" x2="6" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line></svg><p style="margin:0;color:#A1A1AA;font-size:14.5px;line-height:1.5">Des basses qui gonflent différemment à chaque salle</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(255,255,255,0.06)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#26262C"></circle><line x1="6" y1="6" x2="12" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line><line x1="12" y1="6" x2="6" y2="12" stroke="#8E8E96" stroke-width="1.6" stroke-linecap="round"></line></svg><p style="margin:0;color:#A1A1AA;font-size:14.5px;line-height:1.5">Une heure de soundcheck pour un résultat à l'arrache</p></div>
+      </div>
+      <div style="background:rgba(139,92,246,0.07);border:1px solid rgba(139,92,246,0.3);border-radius:18px;padding:6px 26px">
+        <div style="display:flex;align-items:center;gap:12px;padding:20px 0">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2 L17.5 10.5 L26 14 L17.5 17.5 L14 26 L10.5 17.5 L2 14 L10.5 10.5 Z" fill="#8B5CF6"></path></svg>
+          <h3 style="margin:0;font:700 19px 'Space Grotesk',sans-serif;letter-spacing:-0.01em;color:#FAFAFA">Avec FLATTEN</h3>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(139,92,246,0.18)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#8B5CF6"></circle><path d="M5.5 9.2 L8 11.7 L12.7 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><p style="margin:0;color:#E4E4E7;font-size:14.5px;line-height:1.5">Correction calée en deux minutes au soundcheck</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(139,92,246,0.18)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#8B5CF6"></circle><path d="M5.5 9.2 L8 11.7 L12.7 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><p style="margin:0;color:#E4E4E7;font-size:14.5px;line-height:1.5">Tes trois bandes restent libres pour mixer</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(139,92,246,0.18)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#8B5CF6"></circle><path d="M5.5 9.2 L8 11.7 L12.7 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><p style="margin:0;color:#E4E4E7;font-size:14.5px;line-height:1.5">Zéro boîtier : tout se passe dans ton Mac</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(139,92,246,0.18)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#8B5CF6"></circle><path d="M5.5 9.2 L8 11.7 L12.7 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><p style="margin:0;color:#E4E4E7;font-size:14.5px;line-height:1.5">Le rendu corrigé pour l'enceinte et la salle</p></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:17px 0;border-top:1px solid rgba(139,92,246,0.18)"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0"><circle cx="9" cy="9" r="8" fill="#8B5CF6"></circle><path d="M5.5 9.2 L8 11.7 L12.7 6.8" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><p style="margin:0;color:#E4E4E7;font-size:14.5px;line-height:1.5">Cue casque et latence strictement intacts</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="beta" data-screen-label="Formulaire bêta" style="padding:clamp(72px,10vw,120px) 24px;border-top:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:50%;bottom:-260px;transform:translateX(-50%);width:760px;height:480px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,0.14),transparent);filter:blur(40px);pointer-events:none"></div>
+  <div style="position:relative;max-width:560px;margin:0 auto;text-align:center">
+    <h2 style="margin:0;font:700 clamp(34px,5.4vw,58px)/1.04 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-transform:uppercase">Rejoins la<br><span style="position:relative;display:inline-block"><span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(100deg,#7DE8E0 0%,#A8C8F0 45%,#C4B5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:blur(14px);opacity:0.8">bêta gratuite</span><span style="position:relative;background:linear-gradient(100deg,#7DE8E0 0%,#A8C8F0 45%,#C4B5FD 100%);-webkit-background-clip:text;background-clip:text;color:transparent">bêta gratuite</span></span></h2>
+    <p style="margin:14px auto 0;max-width:440px;color:#A1A1AA;font-size:16px;line-height:1.55;text-wrap:pretty">Tu testes sur tes vraies dates, tu me dis ce qui cloche. C'est tout.</p>
+    <div style="display:inline-flex;align-items:baseline;gap:8px;flex-wrap:wrap;justify-content:center;margin:24px 0 20px;padding:8px 16px;border-radius:999px;border:1px solid rgba(139,92,246,0.35);background:rgba(139,92,246,0.08);font-size:13px;color:#C4B5FD">
+      <span>Prérequis : macOS + rekordbox</span>
+      <span style="color:#71717A">· Windows/Serato : plus tard</span>
+    </div>
+    <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submit }}" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+        <input type="email" name="email" required="" placeholder="ton@email.com" aria-label="Ton adresse email" style="flex:1;min-width:220px;padding:15px 18px;border-radius:10px;background:#0E0E11;border:1px solid rgba(255,255,255,0.1);color:#FAFAFA;font:400 16px Inter,sans-serif;outline:none;transition:border-color 160ms ease,box-shadow 160ms ease" style-focus="border-color:#8B5CF6;box-shadow:0 0 0 3px rgba(139,92,246,0.3)">
+        <button type="submit" style="padding:15px 26px;border:none;border-radius:10px;background:linear-gradient(135deg,#8B5CF6,#3B82F6);color:#FFFFFF;font:600 16px Inter,sans-serif;cursor:pointer;box-shadow:0 8px 28px rgba(139,92,246,0.3);transition:transform 160ms cubic-bezier(0.23,1,0.32,1)" style-active="transform:scale(0.97)" style-focus="box-shadow:0 0 0 3px rgba(139,92,246,0.45)">Rejoindre la bêta</button>
+      </form>
+    </sc-if>
+    <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:formIn 200ms cubic-bezier(0.23,1,0.32,1) both;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.35);border-radius:12px;padding:22px">
+        <p style="margin:0;font:600 17px 'Space Grotesk',sans-serif;color:#C4B5FD">C'est noté ✓</p>
+        <p style="margin:8px 0 0;color:#A1A1AA;font-size:14.5px;line-height:1.55">Surveille ta boîte mail : tu recevras le lien de téléchargement dès que ta place est prête.</p>
+      </div>
+    </sc-if>
+    <p style="margin:16px 0 0;font-size:13px;color:#71717A">Bêta gratuite. Pas de spam — juste le lien de téléchargement et les mises à jour.</p>
+  </div>
+</section>
+<section data-screen-label="Avis" style="padding:clamp(64px,9vw,110px) 24px;border-top:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:50%;top:-260px;transform:translateX(-50%);width:760px;height:480px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,0.14),transparent);filter:blur(40px);pointer-events:none"></div>
+  <div style="position:relative;max-width:1400px;margin:0 auto">
+    <div style="text-align:center">
+      <p style="margin:0;font:600 13px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#A78BFA">Ils l'utilisent en bêta</p>
+      <h2 style="margin:14px 0 0;font:700 clamp(28px,4.2vw,44px)/1.1 'Space Grotesk',sans-serif;letter-spacing:-0.02em">Ce que disent les premiers DJs.</h2>
+    </div>
+    <div style="position:relative;margin-top:48px;overflow:hidden">
+      <div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:0;width:70px;background:linear-gradient(90deg,#09090B,transparent);z-index:2;pointer-events:none"></div>
+      <div aria-hidden="true" style="position:absolute;top:0;bottom:0;right:0;width:70px;background:linear-gradient(270deg,#09090B,transparent);z-index:2;pointer-events:none"></div>
+      <div style="display:flex;width:max-content;animation:marquee 60s linear infinite">
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-mk.png" alt="MK Events" style="height:42px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Je calais ma sono à l'oreille pendant le cocktail. Maintenant je n'y touche plus de la soirée.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Mehdi</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mariage · Lyon</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/_.jpeg" alt="Mehdi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-expo-ouest.png" alt="Expo-Ouest International" style="height:26px;width:auto;display:block;background:#FFFFFF;padding:5px 10px;border-radius:8px;box-sizing:content-box">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">La Boombox dans une salle des fêtes vide, c'était une catastrophe. Là, ça tient toute la soirée.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Julien</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ événementiel · Nantes</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/2cc.jpg" alt="Julien" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-bassline.png" alt="Bassline" style="height:23px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Rien senti sur mes cues, et le rendu est nettement plus propre.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Sarah</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ bar & club · Paris</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/Sonoris%20Studio%20Hamburg.jpeg" alt="Sarah" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-sudsono.png" alt="Sud Sono Records" style="height:48px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Ça remplace le rack d'EQ que je trimballais depuis trois ans. Une caisse de moins dans le coffre.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Thomas</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mobile · Bordeaux</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/3cc.jpg" alt="Thomas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-comptoir.png" alt="Le Comptoir" style="height:32px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Le preset Boombox de la communauté, ajusté en deux minutes : la meilleure install de mon été.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Léa</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ bar · Lille</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/1cc.jpg" alt="Léa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-riviera.png" alt="Weddings Riviera" style="height:30px;width:auto;display:block;background:#FFFFFF;padding:4px 10px;border-radius:8px;box-sizing:content-box">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Mes mariés ne savent pas ce que c'est, mais ils entendent la différence.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Karim</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mariage · Marseille</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/4cc.jpg" alt="Karim" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-mk.png" alt="MK Events" style="height:42px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Je calais ma sono à l'oreille pendant le cocktail. Maintenant je n'y touche plus de la soirée.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Mehdi</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mariage · Lyon</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/_.jpeg" alt="Mehdi" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-expo-ouest.png" alt="Expo-Ouest International" style="height:26px;width:auto;display:block;background:#FFFFFF;padding:5px 10px;border-radius:8px;box-sizing:content-box">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">La Boombox dans une salle des fêtes vide, c'était une catastrophe. Là, ça tient toute la soirée.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Julien</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ événementiel · Nantes</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/2cc.jpg" alt="Julien" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-bassline.png" alt="Bassline" style="height:23px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Rien senti sur mes cues, et le rendu est nettement plus propre.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Sarah</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ bar & club · Paris</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/Sonoris%20Studio%20Hamburg.jpeg" alt="Sarah" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-sudsono.png" alt="Sud Sono Records" style="height:48px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Ça remplace le rack d'EQ que je trimballais depuis trois ans. Une caisse de moins dans le coffre.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Thomas</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mobile · Bordeaux</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/3cc.jpg" alt="Thomas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-comptoir.png" alt="Le Comptoir" style="height:32px;width:auto;display:block">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Le preset Boombox de la communauté, ajusté en deux minutes : la meilleure install de mon été.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Léa</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ bar · Lille</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/1cc.jpg" alt="Léa" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 230px;width:580px;height:330px;background:#131316;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:12px;box-sizing:border-box;flex-shrink:0;margin-right:20px">
+          <div style="display:flex;flex-direction:column;padding:16px 22px 14px 14px;min-width:0">
+            <div style="display:flex;align-items:center;gap:9px">
+              <img src="assets/logo-riviera.png" alt="Weddings Riviera" style="height:30px;width:auto;display:block;background:#FFFFFF;padding:4px 10px;border-radius:8px;box-sizing:content-box">
+            </div>
+            <p style="margin:24px 0 0;font:600 clamp(19px,1.6vw,22px)/1.32 'Space Grotesk',sans-serif;letter-spacing:-0.015em;color:#FAFAFA;text-wrap:pretty">Mes mariés ne savent pas ce que c'est, mais ils entendent la différence.</p>
+            <div style="margin-top:auto">
+              <p style="margin:0;font:600 14px Inter,sans-serif;color:#FAFAFA">Karim</p>
+              <p style="margin:4px 0 0;font-size:13px;color:#A1A1AA">DJ mariage · Marseille</p>
+            </div>
+          </div>
+          <div style="position:relative;border-radius:12px;overflow:hidden">
+            <img src="uploads/4cc.jpg" alt="Karim" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,0.18),rgba(59,130,246,0.12));mix-blend-mode:overlay;pointer-events:none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer data-screen-label="Footer" style="border-top:1px solid rgba(255,255,255,0.05);padding:clamp(48px,7vw,72px) 24px 0;overflow:hidden">
+  <div style="max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:36px">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;font:700 18px 'Space Grotesk',sans-serif;letter-spacing:-0.02em">
+        <svg width="38" height="22" viewBox="0 0 52 30" fill="none" aria-hidden="true" style="flex-shrink:0;display:block"><defs><linearGradient id="flatten-wave-1" x1="0" y1="0" x2="52" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#8B5CF6"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient></defs><path d="M1 15 H6 Q7.5 9 9 15 Q10.75 1 12.5 15 Q14.25 29 16 15 Q17.75 1 19.5 15 Q21.25 26 23 15 Q24.5 10 26 15 H51" stroke="url(#flatten-wave-1)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path></svg>
+        <span>FLATTEN</span>
+      </div>
+      <p style="margin:14px 0 0;color:#A1A1AA;font-size:13.5px;line-height:1.6;max-width:220px">Corrige le son de ta sono, directement depuis ton Mac.</p>
+      <p style="margin:10px 0 0;color:#71717A;font-size:12.5px">macOS · rekordbox</p>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Produit</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="#demo" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Écouter la démo</a></li>
+        <li><a href="#beta" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Rejoindre la bêta</a></li>
+        <li><a href="Pricing.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Ressources</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="Blog.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Blog</a></li>
+        <li><a href="Communaute.dc.html" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Communauté</a></li>
+        <li><a href="mailto:hello@flatten.audio" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p style="margin:0 0 14px;font:600 12px 'Space Grotesk',sans-serif;letter-spacing:0.14em;text-transform:uppercase;color:#71717A">Légal</p>
+      <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Mentions légales</a></li>
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">Confidentialité</a></li>
+        <li><a href="#" style="color:#A1A1AA;text-decoration:none;font-size:14px;transition:color 160ms ease" style-hover="color:#FAFAFA">CGU</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:1040px;margin:clamp(32px,5vw,48px) auto 0;padding:18px 0;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:12.5px;color:#71717A">
+    <p style="margin:0">© 2026 FLATTEN — Créé par un DJ pour régler son propre problème de sono.</p>
+    <div style="display:flex;gap:16px">
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">Instagram</a>
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">YouTube</a>
+      <a href="#" style="color:#A1A1AA;text-decoration:none;transition:color 160ms ease" style-hover="color:#FAFAFA">Discord</a>
+    </div>
+  </div>
+  <div aria-hidden="true" style="max-width:1280px;margin:clamp(24px,4vw,44px) auto -0.14em;pointer-events:none">
+    <p style="margin:0;text-align:center;font:700 clamp(70px,16.5vw,230px)/0.85 'Space Grotesk',sans-serif;letter-spacing:-0.02em;background:linear-gradient(180deg,rgba(250,250,250,0.85),rgba(250,250,250,0.05));-webkit-background-clip:text;background-clip:text;color:transparent">FLATTEN</p>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showTrails&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;previewFormSuccess&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Formulaire&quot;}}">
+class Component extends DCLogic {
+  state = { playing: false, corrected: false, submitted: false, revIndex: 0 };
+  waveRef = React.createRef();
+  peaks = null; mix = 0; raf = 0; lastSync = 0;
+  componentDidMount() {
+    this.seedPeaks();
+    this.decodePeaks();
+    this.onResize = () => this.setupCanvas();
+    window.addEventListener('resize', this.onResize);
+    this.setupCanvas();
+    this.setupReveal();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    cancelAnimationFrame(this.raf);
+    if (this.audioA) { this.audioA.pause(); this.audioB.pause(); }
+  }
+  seedPeaks() {
+    let s = 20260812; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    const n = 160, raw = [];
+    // marche aléatoire + enveloppe lente = allure de vrai morceau (build/drop), sans motif périodique
+    let walk = 0.5;
+    for (let i = 0; i < n; i++) {
+      walk += (r() - 0.5) * 0.28; walk = Math.max(0.12, Math.min(0.95, walk));
+      const env = 0.55 + 0.45 * Math.sin(i * 0.043 + 1.2) * Math.sin(i * 0.011 + 4);
+      const transient = r() < 0.06 ? 0.35 * r() : 0;
+      raw.push(walk * (0.5 + 0.5 * env) + transient + r() * 0.08);
+    }
+    // lissage léger pour des voisins cohérents
+    this.peaks = raw.map((v, i) => {
+      const a = raw[Math.max(0, i - 1)], b = raw[Math.min(n - 1, i + 1)];
+      return Math.min(1, Math.max(0.06, v * 0.6 + (a + b) * 0.2));
+    });
+  }
+  setupCanvas() {
+    const c = this.waveRef.current; if (!c) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    c.width = (c.clientWidth || 600) * dpr; c.height = 150 * dpr;
+    this.draw();
+  }
+  initAudio() {
+    if (this.audioA) return;
+    const A = new Audio('audio/before.wav'), B = new Audio('audio/after.wav');
+    A.loop = B.loop = true; A.preload = B.preload = 'auto';
+    this.audioA = A; this.audioB = B; this.applyMute();
+  }
+  decodePeaks() {
+    // vraies crêtes de la waveform, décodées en arrière-plan dès le chargement
+    fetch('audio/before.wav').then(r => r.arrayBuffer()).then(ab => {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      const ac = new AC();
+      return ac.decodeAudioData(ab).then(buf => { this.computePeaks(buf); ac.close(); });
+    }).catch(() => {});
+  }
+  computePeaks(buf) {
+    const d = buf.getChannelData(0), n = 160, blk = Math.floor(d.length / n), p = [];
+    for (let i = 0; i < n; i++) {
+      let sum = 0, cnt = 0, m = 0;
+      for (let j = i * blk; j < (i + 1) * blk; j += 16) { const a = Math.abs(d[j]); sum += a * a; cnt++; if (a > m) m = a; }
+      const rms = Math.sqrt(sum / Math.max(1, cnt));
+      p.push(Math.min(1, (rms * 1.6 + m * 0.5)));
+    }
+    this.peaks = p; this.draw();
+  }
+  applyMute() {
+    if (!this.audioA) return;
+    this.audioA.muted = this.state.corrected;
+    this.audioB.muted = !this.state.corrected;
+  }
+  togglePlay = async () => {
+    this.initAudio();
+    if (this.state.playing) {
+      this.audioA.pause(); this.audioB.pause();
+      this.setState({ playing: false });
+    } else {
+      try {
+        this.audioB.currentTime = this.audioA.currentTime;
+        await Promise.all([this.audioA.play(), this.audioB.play()]);
+        this.setState({ playing: true }, () => this.startLoop());
+      } catch (e) {}
+    }
+  };
+  toggleCorrection = () => {
+    this.setState(s => ({ corrected: !s.corrected }), () => {
+      this.applyMute();
+      if (this.audioA && this.state.playing) this.audioB.currentTime = this.audioA.currentTime;
+      this.startLoop();
+    });
+  };
+  seek = (e) => {
+    if (!this.audioA || !this.audioA.duration) return;
+    const c = this.waveRef.current, r = c.getBoundingClientRect();
+    const t = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * this.audioA.duration;
+    this.audioA.currentTime = t; this.audioB.currentTime = t;
+    this.draw();
+  };
+  startLoop() {
+    cancelAnimationFrame(this.raf);
+    const step = (ts) => {
+      const target = this.state.corrected ? 1 : 0;
+      this.mix += (target - this.mix) * 0.18;
+      if (Math.abs(target - this.mix) < 0.01) this.mix = target;
+      if (this.state.playing && this.audioA && ts - this.lastSync > 2000) {
+        this.lastSync = ts;
+        if (Math.abs(this.audioA.currentTime - this.audioB.currentTime) > 0.05)
+          this.audioB.currentTime = this.audioA.currentTime;
+      }
+      this.draw();
+      if (this.state.playing || this.mix !== target) this.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  draw() {
+    const c = this.waveRef.current; if (!c || !this.peaks) return;
+    const g = c.getContext('2d'), W = c.width, H = c.height;
+    g.clearRect(0, 0, W, H);
+    const n = this.peaks.length, bw = W / n;
+    const prog = this.audioA && this.audioA.duration ? this.audioA.currentTime / this.audioA.duration : 0;
+    const grad = g.createLinearGradient(0, 0, W, 0);
+    grad.addColorStop(0, '#8B5CF6'); grad.addColorStop(1, '#3B82F6');
+    const bar = (x, y, w, h) => {
+      const r = Math.min(w / 2, 2 * (W / 600));
+      if (g.roundRect) { g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); }
+      else g.fillRect(x, y, w, h);
+    };
+    for (let i = 0; i < n; i++) {
+      const h = Math.max(3, this.peaks[i] * H * 0.88);
+      const x = i * bw + bw * 0.18, y = (H - h) / 2, w = bw * 0.64;
+      if (i / n <= prog) {
+        if (this.mix < 1) { g.globalAlpha = 1 - this.mix; g.fillStyle = 'rgba(139,92,246,0.55)'; bar(x, y, w, h); }
+        if (this.mix > 0) { g.globalAlpha = this.mix; g.fillStyle = grad; bar(x, y, w, h); }
+        g.globalAlpha = 1;
+      } else {
+        g.fillStyle = 'rgba(255,255,255,0.11)';
+        bar(x, y, w, h);
+      }
+    }
+    if (prog > 0) {
+      const px = prog * W;
+      g.save();
+      g.shadowColor = 'rgba(139,92,246,0.9)'; g.shadowBlur = 8 * (W / 600);
+      g.fillStyle = 'rgba(232,225,255,0.95)';
+      const lw = Math.max(2, 1.5 * (W / 600));
+      if (g.roundRect) { g.beginPath(); g.roundRect(px - lw / 2, H * 0.04, lw, H * 0.92, lw / 2); g.fill(); }
+      else g.fillRect(px - lw / 2, H * 0.04, lw, H * 0.92);
+      g.restore();
+    }
+  }
+  setupReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!els.length) return;
+    const rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const show = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    els.forEach(el => {
+      el.style.opacity = '0';
+      if (!rm) el.style.transform = 'translateY(8px)';
+      el.style.transition = 'opacity 300ms cubic-bezier(0.23,1,0.32,1),transform 300ms cubic-bezier(0.23,1,0.32,1)';
+    });
+    if (!('IntersectionObserver' in window)) { els.forEach(show); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          const el = en.target, d = (+el.dataset.reveal || 0) * 60;
+          setTimeout(() => show(el), d);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    els.forEach(el => io.observe(el));
+  }
+  submit = (e) => { e.preventDefault(); this.setState({ submitted: true }); };
+  prevRev = () => this.setState(s => ({ revIndex: (s.revIndex + 3) % 4 }));
+  nextRev = () => this.setState(s => ({ revIndex: (s.revIndex + 1) % 4 }));
+  goRev = (i) => this.setState({ revIndex: i });
+  renderVals() {
+    const c = this.state.corrected;
+    const submitted = this.state.submitted || (this.props.previewFormSuccess ?? false);
+    return {
+      playing: this.state.playing, notPlaying: !this.state.playing,
+      correctedAttr: c ? 'true' : 'false',
+      knobX: c ? '100%' : '0%',
+      knobBg: c ? 'linear-gradient(135deg,#8B5CF6,#3B82F6)' : 'linear-gradient(180deg,#33333B,#26262C)',
+      knobShadow: c ? '0 0 24px rgba(139,92,246,0.55),inset 0 1px 0 rgba(255,255,255,0.3)' : 'inset 0 1px 0 rgba(255,255,255,0.08),0 2px 6px rgba(0,0,0,0.4)',
+      offColor: c ? '#71717A' : '#FAFAFA',
+      onColor: c ? '#FFFFFF' : '#71717A',
+      statusText: c ? 'Correction activée' : 'Correction désactivée',
+      statusColor: c ? '#A78BFA' : '#A1A1AA',
+      haloOpacity: c ? 1 : 0.4,
+      playLabel: this.state.playing ? 'Pause' : 'Lecture',
+      showTrails: this.props.showTrails ?? true,
+      submitted, notSubmitted: !submitted,
+      submit: this.submit,
+      togglePlay: this.togglePlay,
+      toggleCorrection: this.toggleCorrection,
+      seek: this.seek,
+      waveRef: this.waveRef,
+      revX: '-' + (this.state.revIndex * 100) + '%',
+      prevRev: this.prevRev,
+      nextRev: this.nextRev,
+      revDots: [0, 1, 2, 3].map(i => ({
+        n: i + 1,
+        go: () => this.goRev(i),
+        bg: i === this.state.revIndex ? '#8B5CF6' : 'rgba(255,255,255,0.18)',
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>
