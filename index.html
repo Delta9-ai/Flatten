@@ -36,7 +36,7 @@ html{scroll-behavior:auto}
 </helmet>
 <header data-screen-label="Hero" style="position:relative;overflow:hidden;padding:0 24px">
   <div id="hero-shader" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(9,9,11,0.72),rgba(9,9,11,0.35) 60%,transparent 85%),linear-gradient(180deg,rgba(9,9,11,0.6),transparent 130px)"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(9,9,11,0.72),rgba(9,9,11,0.35) 60%,transparent 85%),linear-gradient(180deg,rgba(9,9,11,0.6),transparent 130px),linear-gradient(0deg,#09090B 0%,rgba(9,9,11,0.6) 90px,transparent 200px)"></div>
   </div>
   <script type="module">
     import { ShaderMount, grainGradientFragmentShader, getShaderColorFromString, getShaderNoiseTexture, GrainGradientShapes, ShaderFitOptions } from './vendor/paper-shaders.js';
@@ -54,7 +54,7 @@ html{scroll-behavior:auto}
         u_shape: GrainGradientShapes.corners,
         u_noiseTexture: noiseTexture,
         u_fit: ShaderFitOptions.contain,
-        u_scale: 1,
+        u_scale: 1.35,
         u_rotation: 0,
         u_offsetX: 0,
         u_offsetY: 0,
