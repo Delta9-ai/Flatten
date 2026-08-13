@@ -35,19 +35,40 @@ html{scroll-behavior:auto}
 </style>
 </helmet>
 <header data-screen-label="Hero" style="position:relative;overflow:hidden;padding:0 24px">
-  <sc-if value="{{ showTrails }}" hint-placeholder-val="{{ true }}">
-    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
-      <div style="position:absolute;top:-200px;right:-180px;width:720px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,0.22),rgba(59,130,246,0.08) 60%,transparent);filter:blur(48px)"></div>
-      <div style="position:absolute;top:2%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.28) 55%,rgba(196,181,253,0.5) 96%,transparent);transform:rotate(-4deg);filter:blur(1px);background-size:220% 100%;animation:beamShift 9s ease-in-out -2s infinite alternate"></div>
-      <div style="position:absolute;top:3%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(59,130,246,0.32) 50%,rgba(147,197,253,0.5) 96%,transparent);transform:rotate(-8deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 12s ease-in-out -7s infinite alternate"></div>
-      <div style="position:absolute;top:4%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.5) 52%,rgba(139,92,246,0.55) 96%,transparent);transform:rotate(-13deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 8s ease-in-out -4s infinite alternate"></div>
-      <div style="position:absolute;top:5%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 8%,rgba(59,130,246,0.45) 48%,rgba(59,130,246,0.5) 96%,transparent);transform:rotate(-18deg);background-size:220% 100%;animation:beamShift 11s ease-in-out -9s infinite alternate"></div>
-      <div style="position:absolute;top:6%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent,rgba(139,92,246,0.4) 50%,rgba(196,181,253,0.55) 96%,transparent);transform:rotate(-24deg);filter:blur(0.8px);background-size:220% 100%;animation:beamShift 10s ease-in-out -1s infinite alternate"></div>
-      <div style="position:absolute;top:7%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 10%,rgba(59,130,246,0.4) 50%,rgba(147,197,253,0.5) 96%,transparent);transform:rotate(-31deg);filter:blur(0.6px);background-size:220% 100%;animation:beamShift 13s ease-in-out -6s infinite alternate"></div>
-      <div style="position:absolute;top:8%;right:-4%;width:134%;height:2px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 12%,rgba(139,92,246,0.35) 55%,rgba(139,92,246,0.5) 96%,transparent);transform:rotate(-39deg);filter:blur(1.2px);background-size:220% 100%;animation:beamShift 9.5s ease-in-out -3s infinite alternate"></div>
-      <div style="position:absolute;top:9%;right:-4%;width:134%;height:1px;transform-origin:100% 50%;background:linear-gradient(90deg,transparent 15%,rgba(59,130,246,0.3) 55%,rgba(147,197,253,0.42) 96%,transparent);transform:rotate(-48deg);filter:blur(1px);background-size:220% 100%;animation:beamShift 14s ease-in-out -11s infinite alternate"></div>
-    </div>
-  </sc-if>
+  <div id="hero-shader" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(9,9,11,0.72),rgba(9,9,11,0.35) 60%,transparent 85%),linear-gradient(180deg,rgba(9,9,11,0.6),transparent 130px)"></div>
+  </div>
+  <script type="module">
+    import { ShaderMount, grainGradientFragmentShader, getShaderColorFromString, getShaderNoiseTexture, GrainGradientShapes, ShaderFitOptions } from './vendor/paper-shaders.js';
+    try {
+      const colors = ['#7300ff', '#eba8ff', '#00bfff', '#2a00ff'];
+      const noiseTexture = getShaderNoiseTexture();
+      await noiseTexture.decode();
+      const uniforms = {
+        u_colorBack: getShaderColorFromString('#09090B'),
+        u_colors: colors.map(getShaderColorFromString),
+        u_colorsCount: colors.length,
+        u_softness: 0.5,
+        u_intensity: 0.5,
+        u_noise: 0.25,
+        u_shape: GrainGradientShapes.corners,
+        u_noiseTexture: noiseTexture,
+        u_fit: ShaderFitOptions.contain,
+        u_scale: 1,
+        u_rotation: 0,
+        u_offsetX: 0,
+        u_offsetY: 0,
+        u_originX: 0.5,
+        u_originY: 0.5,
+        u_worldWidth: 0,
+        u_worldHeight: 0
+      };
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      new ShaderMount(document.getElementById('hero-shader'), grainGradientFragmentShader, uniforms, undefined, reduceMotion ? 0 : 1);
+    } catch (e) {
+      console.warn('Fond animé indisponible (WebGL requis) :', e);
+    }
+  </script>
   <nav style="position:relative;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,3.5vw,56px)">
     <div style="display:flex;align-items:center;gap:12px;font:700 24px 'Space Grotesk',sans-serif;letter-spacing:-0.02em">
       <svg width="66" height="38" viewBox="0 0 52 30" fill="none" aria-hidden="true" style="flex-shrink:0;display:block">
