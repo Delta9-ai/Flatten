@@ -32,7 +32,13 @@ input::placeholder{color:#71717A}
 @keyframes marquee{from{transform:none}to{transform:none}}
 @keyframes beamShift{from{opacity:0.6}to{opacity:0.9}}
 html{scroll-behavior:auto}
+.pcard .pblob{animation:none;transform:translate(-50%,-50%)}
 }
+.pcard{position:relative;overflow:hidden}
+.pcard>*{position:relative;z-index:2}
+.pcard .pblob{position:absolute;z-index:0;top:50%;left:50%;width:220px;height:220px;border-radius:50%;filter:blur(16px);background:linear-gradient(90deg,#8B5CF6,#3B82F6,#C4B5FD);animation:pblob 5s linear infinite}
+.pcard .pglass{position:absolute;z-index:1;inset:5px;border-radius:12px;background:rgba(13,13,16,0.72);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);outline:1px solid rgba(255,255,255,0.08)}
+@keyframes pblob{0%{transform:translate(-100%,-100%)}25%{transform:translate(0%,-100%)}50%{transform:translate(0%,0%)}75%{transform:translate(-100%,0%)}100%{transform:translate(-100%,-100%)}}
 </style>
 </helmet>
 <header data-screen-label="Hero" style="position:relative;overflow:hidden;padding:0 24px">
@@ -143,7 +149,9 @@ html{scroll-behavior:auto}
   <div style="max-width:1400px;margin:0 auto">
     <h2 style="margin:0 auto;font:700 clamp(28px,4vw,42px)/1.15 'Space Grotesk',sans-serif;letter-spacing:-0.02em;max-width:620px;text-align:center;text-wrap:pretty">Sur contrôleur, tu n'as aucun moyen logiciel de corriger ta sono.</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:52px">
-      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+      <div class="pcard" style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <div class="pblob" aria-hidden="true"></div>
+        <div class="pglass" aria-hidden="true"></div>
         <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 1</p>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
         <div style="display:flex;align-items:center;justify-content:center;height:150px">
@@ -156,7 +164,9 @@ html{scroll-behavior:auto}
         <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">L'EQ de ta table mixe, il ne corrige pas</h3>
         <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">Ses trois bandes servent à enchaîner les morceaux. Si tu les détournes pour rattraper l'enceinte, tu ne peux plus mixer avec.</p>
       </div>
-      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+      <div class="pcard" style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <div class="pblob" aria-hidden="true"></div>
+        <div class="pglass" aria-hidden="true"></div>
         <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 2</p>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
         <div style="display:flex;align-items:center;justify-content:center;height:150px">
@@ -168,7 +178,9 @@ html{scroll-behavior:auto}
         <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">rekordbox n'a pas d'EQ master</h3>
         <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">Réclamé depuis des années sur les forums. Toujours rien : le signal sort tel quel, sans correction possible.</p>
       </div>
-      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+      <div class="pcard" style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <div class="pblob" aria-hidden="true"></div>
+        <div class="pglass" aria-hidden="true"></div>
         <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 3</p>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
         <div style="display:flex;align-items:center;justify-content:center;height:150px">
@@ -181,7 +193,9 @@ html{scroll-behavior:auto}
         <h3 style="margin:0 0 10px;font:600 20px/1.3 'Space Grotesk',sans-serif;letter-spacing:-0.01em;text-wrap:pretty">Les EQ système ne captent rien</h3>
         <p style="margin:0;color:#8E8E96;font-size:13.5px;line-height:1.6">eqMac et consorts n'y peuvent rien : les logiciels DJ contournent le circuit audio classique de macOS.</p>
       </div>
-      <div style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+      <div class="pcard" style="background:#141417;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:24px 26px 30px;display:flex;flex-direction:column">
+        <div class="pblob" aria-hidden="true"></div>
+        <div class="pglass" aria-hidden="true"></div>
         <p style="margin:0;font:500 13px 'Space Grotesk',sans-serif;letter-spacing:0.04em;color:#8E8E96">Problème 4</p>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:14px 0 0"></div>
         <div style="display:flex;align-items:center;justify-content:center;height:150px">
